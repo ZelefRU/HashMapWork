@@ -1,0 +1,31 @@
+package org.example;
+
+public enum Names {
+    Ivan,
+    Maria,
+    Sergey,
+    Ekaterina,
+    Alexander,
+    Olga,
+    Dmitry,
+    Natalia,
+    Mikhail,
+    Elena,
+    Maxim,
+    Anna,
+    Andrei,
+    Yulia,
+    Anton,
+    Irina,
+    Pavel,
+    Svetlana,
+    Vladimir,
+    Tatyana,
+    Igor,
+    Larisa,
+    Oleg,
+    Roman,
+    Marina,
+    Alexey,
+    Denis
+}
