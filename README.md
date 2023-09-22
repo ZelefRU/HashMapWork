@@ -1,1 +1,2 @@
 # HashMapWork
+Author: Важенин Никита
