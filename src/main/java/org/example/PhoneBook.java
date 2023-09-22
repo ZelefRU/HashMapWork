@@ -1,6 +1,5 @@
 package org.example;
 
-
 import java.util.*;
 
 /**
@@ -21,7 +20,7 @@ class PhoneBook {
      * Метод отправки Debug сообщений
      * @param message содержимое сообщения
      */
-    public void msgDebug(String message) {if (debug) System.out.println("\u001B[32m [i] " + message);}
+    public void msgDebug(String message) {if (debug) System.out.println(Color.GREEN + " [i] "+ message);}
 
     /**
      * Добавление контакта в телефонный справочник (книгу)
@@ -32,15 +31,15 @@ class PhoneBook {
         // Проверяем содержится ли такое имя в книге
         msgDebug(" - addPhone method has been called");
         if (book.containsKey(name)) {
-            msgDebug("\u001B[33m" +"book already contains " + "\u001B[36m" + name);
+            msgDebug(Color.RED.getCode() + "book already contains " + Color.BLUE.getCode() + name);
             // Проверяем содержится ли номер если есть имя
             if (book.get(name)[0].equals(number)) {
-                System.out.printf("\u001B[31m" + "User already created! (%s, %s)\n", name, number);
+                System.out.printf(Color.RED.getCode() + "User already created! (%s, %s)\n", name, number);
             }
             // Если есть запись, но номера разные, то добавляем в массив Long ещё один номер
             else {
                 msgDebug("new number is different");
-                msgDebug("add new number - " + "\u001B[36m" + number);
+                msgDebug("add new number - " + Color.LIGHT_BLUE.getCode() + number);
                 Long[] temp = new Long[book.get(name).length + 1];
                 for (int i = 0; i < temp.length - 1; i++) {
                     temp[i] = book.get(name)[i];
@@ -52,7 +51,7 @@ class PhoneBook {
         // Если имени нет, то просто добавляем пользователя в базу
         else {
             book.put(name, new Long[]{number});
-            msgDebug("new user has been added - " + "\u001B[36m" + name + ", " + number );
+            msgDebug(String.format("new user has been added - %s %s, %s",Color.LIGHT_BLUE.getCode(), name, number));
         }
     }
 
@@ -70,7 +69,7 @@ class PhoneBook {
             wordEnding = "s";
         }
         // Создаём результирующую строку
-        StringBuilder result = new StringBuilder(String.format("\u001B[0m" + "Name: %s. Number%s: ",name, wordEnding));
+        StringBuilder result = new StringBuilder(String.format(Color.RESET.getCode() + "Name: %s. Number%s: ",name, wordEnding));
         // Добавляем номера
         for (Long number : numbers) {
             result.append(number.toString()).append(", ");
@@ -86,7 +85,7 @@ class PhoneBook {
      */
     public void getAllContacts() {
         msgDebug(" - getAllContacts method has been called");
-        System.out.println("-".repeat(10) + "\u001B[0m" +  "Contact list" + "-".repeat(10));
+        System.out.println(Color.RESET.getCode() + "-".repeat(10) +  "Contact list" + "-".repeat(10));
         book.forEach((s, longs) -> {
             System.out.printf("\u001B[35m" + "Name: %s, Numbers: ", s);
             System.out.println(Arrays.toString(longs));
@@ -99,7 +98,7 @@ class PhoneBook {
      */
     public void getAllContactsSorted() {
         msgDebug(" - getAllContactsSorted method has been called");
-        System.out.println("\u001B[0m" +  "-".repeat(10) + "Contact Sorted list" + "-".repeat(10));
+        System.out.println(Color.RESET.getCode() + "-".repeat(10) + "Contact Sorted list" + "-".repeat(10));
         // Создаём лист и сохраняем в него значения для сортировки
         List<Map.Entry<String, Long[]>> entries = new ArrayList<>(book.entrySet());
 
@@ -110,7 +109,7 @@ class PhoneBook {
         // Вывод
         for (Map.Entry<String, Long[]> entry: entries) {
             Long[] values = entry.getValue();
-            System.out.printf("\u001B[36m" + "Name: %s, Number: %s%n", entry.getKey(), Arrays.toString(values));
+            System.out.printf(Color.LIGHT_BLUE.getCode() + "Name: %s, Number: %s%n", entry.getKey(), Arrays.toString(values));
         }
     }
 }

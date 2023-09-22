@@ -11,7 +11,7 @@ public class test {
         for (int i = 0; i < number.length - 1; i++) {
             number[i] = generateRandomPhoneNumber(8,777);
         }
-
+        short s = 1;
         stopTimer(start);
     }
 }
